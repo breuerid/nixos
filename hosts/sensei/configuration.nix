@@ -5,13 +5,22 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  environment.systemPackages = [ pkgs.git ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  environment.systemPackages = [
+    pkgs.git
+    pkgs.zed-editor
+    pkgs.nil
+    pkgs.nixd
+    pkgs.nixfmt
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -83,43 +92,48 @@
   users.users."david" = {
     isNormalUser = true;
     description = "David W. Breuer";
-    extraGroups = [ "networkmanager" "wheel" ];
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP0UTksg6tcUn/iQWcRt4piukTnUIAoPmh9Qd75cnE0a" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP0UTksg6tcUn/iQWcRt4piukTnUIAoPmh9Qd75cnE0a"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Install firefox.
   programs.firefox = {
     enable = true;
-    policies = { 
-     DisableTelemetry = true;
-     DisableFirefoxStudies = true;
-     
-     EnableTrackingProtection = {
-       Value = true;
-       Locked = false;
-       Cryptomining = true;
-       Fingerprinting = true;
-     };
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
 
-     OverrideFirstRunPage = "";
-     OverridePostUpdatePage = "";
-     DontCheckDefaultBrowser = true;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = false;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
 
-     Homepage = {
-       URL = "https://studio.bitsoft.nl";
-       Locked = true;
-     };
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
 
-     ExtensionSettings = {
-       # Bitwarden
-       "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-           installation_mode = "force_installed";
-           install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-       };
-     };
+      Homepage = {
+        URL = "https://studio.bitsoft.nl";
+        Locked = true;
+      };
+
+      ExtensionSettings = {
+        # Bitwarden
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+        };
+      };
     };
   };
 
@@ -129,16 +143,15 @@
   ### CUSTOM ###
 
   services.openssh = {
-    enable=true;
+    enable = true;
     settings.PasswordAuthentication = false;
     openFirewall = true;
   };
-  
+
   services.tailscale = {
     enable = true;
     openFirewall = true;
   };
-
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
