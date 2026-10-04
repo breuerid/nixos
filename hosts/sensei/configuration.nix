@@ -134,8 +134,10 @@
           "Google"
           "Bing"
           "Perplexity"
-          "Eclosia"
+          "Ecosia"
           "Qwant"
+          "eBay"
+          "Wikipedia (en)"
         ];
       };
 
