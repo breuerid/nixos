@@ -94,13 +94,28 @@
   programs.firefox = {
     enable = true;
     policies = { 
+     DisableTelemetry = true;
+     DisableFirefoxStudies = true;
+     
+     EnableTrackingProtection = {
+       Value = true;
+       Locked = false;
+       Cryptomining = true;
+       Fingerprinting = true;
+     };
+
+     OverrideFirstRunPage = "";
+     OverridePostUpdatePage = "";
+     DontCheckDefaultBrowser = true;
+
      Homepage = {
        URL = "https://studio.bitsoft.nl";
        Locked = true;
      };
+
      ExtensionSettings = {
        # Bitwarden
-       "{446900e4-71c2-419f-a6a7-df9c091ae2a7}" = {
+       "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
            installation_mode = "force_installed";
            install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
        };
