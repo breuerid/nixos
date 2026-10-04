@@ -62,49 +62,6 @@
     variant = "euro";
   };
 
-  environment.etc."xdg/autostart/sensei-xfce-desktop.desktop".text = ''
-    [Desktop Entry]
-    Type=Application
-    Name=Sensei XFCE desktopinstellingen
-    Comment=Pas de vaste XFCE-desktopinstellingen toe
-    Exec=/etc/xdg/sensei-xfce-desktop
-    OnlyShowIn=XFCE;
-    X-GNOME-Autostart-enabled=true
-  '';
-
-  environment.etc."xdg/sensei-xfce-desktop" = {
-    mode = "0755";
-    text = ''
-      #!${pkgs.runtimeShell}
-
-      log_file="$HOME/.cache/sensei-xfce-desktop.log"
-      mkdir -p "$HOME/.cache"
-      exec >> "$log_file" 2>&1
-
-      echo "[$(${pkgs.coreutils}/bin/date --iso-8601=seconds)] XFCE desktopinstellingen toepassen"
-
-      # Wacht kort zodat xfce4-session, xfwm4 en xfce4-panel hun eigen instellingen geladen hebben.
-      ${pkgs.coreutils}/bin/sleep 5
-
-      set_xfconf() {
-        channel="$1"
-        property="$2"
-        type="$3"
-        value="$4"
-
-        ${pkgs.xfconf}/bin/xfconf-query --channel "$channel" --property "$property" --set "$value" \
-          || ${pkgs.xfconf}/bin/xfconf-query --channel "$channel" --property "$property" --create --type "$type" --set "$value"
-      }
-
-      set_xfconf xfwm4 /general/workspace_count int 1
-      set_xfconf xfce4-panel /panels/panel-1/position string "p=11;x=0;y=0"
-      set_xfconf xfce4-panel /panels/panel-1/length uint 100
-      set_xfconf xfce4-panel /panels/panel-1/position-locked bool true
-
-      ${pkgs.xfce4-panel}/bin/xfce4-panel --restart || true
-    '';
-  };
-
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
