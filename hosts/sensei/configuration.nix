@@ -130,14 +130,12 @@
 
       SearchEngines = {
         Default = "Startpage";
-        Add = [
-          {
-            Name = "Startpage";
-            UrlTemplate = "https://www.startpage.com/sp/search?query={searchTerms}";
-            Method = "GET";
-            Alias = "@sp";
-            Description = "Startpage";
-          }
+        Remove = [
+          "Google"
+          "Bing"
+          "Perplexity"
+          "Eclosia"
+          "Qwant"
         ];
       };
 
