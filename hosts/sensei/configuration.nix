@@ -76,11 +76,11 @@
     mode = "0755";
     text = ''
       #!${pkgs.runtimeShell}
-      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfwm4 --property /general/workspace_count --create --type int --set 1
-      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/position --create --type string --set "p=11;x=0;y=0"
-      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/length --create --type uint --set 100
-      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/position-locked --create --type bool --set true
-      ${pkgs.xfce.xfce4-panel}/bin/xfce4-panel --restart || true
+      ${pkgs.xfconf}/bin/xfconf-query --channel xfwm4 --property /general/workspace_count --create --type int --set 1
+      ${pkgs.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/position --create --type string --set "p=11;x=0;y=0"
+      ${pkgs.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/length --create --type uint --set 100
+      ${pkgs.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/position-locked --create --type bool --set true
+      ${pkgs.xfce4-panel}/bin/xfce4-panel --restart || true
     '';
   };
 
