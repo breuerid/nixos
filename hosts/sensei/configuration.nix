@@ -129,14 +129,14 @@
       #HTTPS Standaard, maar uitzonderingen blijven mogelijk
       HttpsOnlyMode = "enabled";
 
-      IPProtectionAvailible = false;
+      IPProtectionAvailable = false;
       AIControls = {
         Default = {
           Value = "blocked";
           Locked = true;
         };
         Translations = {
-          Value = "availible";
+          Value = "available    ";
           Locked = false;
         };
       };
