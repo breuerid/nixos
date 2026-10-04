@@ -1,5 +1,5 @@
 {
-  # Hier komt de volledige bestaande programs.firefox-blok
+  #
   programs.firefox = {
     enable = true;
     languagePacks = [ "nl" ];
