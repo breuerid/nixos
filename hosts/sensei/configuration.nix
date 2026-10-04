@@ -10,10 +10,19 @@
   ];
 
   # Nix
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -25,6 +34,7 @@
   # Netwerk
   networking.hostName = "sensei";
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   # Lokalisatie
   time.timeZone = "Europe/Amsterdam";
@@ -66,6 +76,14 @@
   # Printen
   services.printing.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  services.blueman.enable = true;
+
   # Gebruikers
   users.users."david" = {
     isNormalUser = true;
@@ -77,9 +95,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP0UTksg6tcUn/iQWcRt4piukTnUIAoPmh9Qd75cnE0a"
     ];
-    packages = with pkgs; [
-      # thunderbird
-    ];
+    packages = with pkgs; [ ];
   };
 
   # Systeempakketten
@@ -87,10 +103,22 @@
     pkgs.fastfetch
     pkgs.git
     pkgs.zed-editor
+    pkgs.thunderbird
+    pkgs.onlyoffice-desktopeditors
     pkgs.nil
     pkgs.nixd
     pkgs.nixfmt
   ];
+
+  # Git
+  programs.git = {
+    enable = true;
+    config = {
+      user.name = "David W. Breuer";
+      user.email = "184601608+breuerid@users.noreply.github.com";
+      init.defaultBranch = "main";
+    };
+  };
 
   # Services
   services.openssh = {
