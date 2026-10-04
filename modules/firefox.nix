@@ -1,10 +1,56 @@
 {
-  #
+  # Persoonlijke Firefox-configuratie en policies.
   programs.firefox = {
     enable = true;
+
+    # Taal
     languagePacks = [ "nl" ];
 
     policies = {
+      # Opstarten en onboarding
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+
+      # Locales
+      RequestedLocales = [
+        "nl"
+        "en-US"
+      ];
+
+      # Homepage
+      Homepage = {
+        URL = "https://studio.bitsoft.nl";
+        Locked = true;
+      };
+
+      FirefoxHome = {
+        Locked = true;
+        Weather = false;
+        SponsoredTopSites = false;
+        SponsoredStories = false;
+        Stories = false;
+      };
+
+      # Aanbevelingen en suggesties
+      UserMessaging = {
+        Locked = false;
+        ExtensionRecommendations = false;
+        FeatureRecommendations = false;
+        UrlbarInterventions = false;
+        SkipOnboarding = true;
+        MoreFromMozilla = false;
+        FirefoxLabs = false;
+      };
+
+      FirefoxSuggest = {
+        Locked = true;
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        OnlineEnabled = false;
+      };
+
+      # Privacy en beveiliging
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
 
@@ -14,36 +60,15 @@
         Cryptomining = true;
         Fingerprinting = true;
       };
-      FirefoxHome = {
-        Weather = false;
-        SponsoredTopSites = false;
-        SponsoredStories = false;
-        Stories = false;
-        Locked = true;
-      };
 
-      FirefoxSuggest = {
-        WebSuggestions = false;
-        SponsoredSuggestions = false;
-        OnlineEnabled = false;
-        Locked = true;
-      };
+      HttpsOnlyMode = "enabled";
+      IPProtectionAvailable = false;
 
-      RequestedLocales = [
-        "nl"
-        "en-US"
-      ];
-      OverrideFirstRunPage = "";
-      OverridePostUpdatePage = "";
-      DontCheckDefaultBrowser = true;
-
-      # Bitwarden bewaard logins
+      # Wachtwoorden
       OfferToSaveLogins = false;
       PasswordManagerEnabled = false;
-      #HTTPS Standaard, maar uitzonderingen blijven mogelijk
-      HttpsOnlyMode = "enabled";
 
-      IPProtectionAvailable = false;
+      # AI en vertalingen
       AIControls = {
         Default = {
           Value = "blocked";
@@ -55,17 +80,6 @@
         };
       };
 
-      #Minder aanbevelingen en mozilla promites
-      UserMessaging = {
-        ExtensionRecommendations = false;
-        FeatureRecommendations = false;
-        UrlbarInterventions = false;
-        SkipOnboarding = true;
-        MoreFromMozilla = false;
-        FirefoxLabs = false;
-        Locked = false;
-      };
-
       Preferences = {
         "browser.translations.neverTranslateLanguages" = {
           Value = "en";
@@ -73,11 +87,7 @@
         };
       };
 
-      Homepage = {
-        URL = "https://studio.bitsoft.nl";
-        Locked = true;
-      };
-
+      # Zoekmachines
       SearchEngines = {
         Default = "Startpage";
         Remove = [
@@ -91,12 +101,15 @@
         ];
       };
 
+      # Extensies
       ExtensionSettings = {
         # Bitwarden
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
         };
+
+        # uBlock Origin
         "uBlock0@raymondhill.net" = {
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
