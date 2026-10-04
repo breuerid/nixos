@@ -62,6 +62,18 @@
     variant = "euro";
   };
 
+  # Fonts
+  fonts.packages = [
+    pkgs.inter
+    pkgs.noto-fonts
+    pkgs.noto-fonts-emoji
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.corefonts
+    pkgs.liberation_ttf
+    pkgs.carlito
+    pkgs.caladea
+  ];
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
