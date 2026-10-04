@@ -121,7 +121,7 @@
         Fingerprinting = true;
       };
 
-      RequrestedLocales = [ "nl" "en-US" ];
+      RequestedLocales = [ "nl" "en-US" ];
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
