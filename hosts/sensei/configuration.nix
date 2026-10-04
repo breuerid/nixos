@@ -125,7 +125,14 @@
         SponsoredTopSites = false;
         SponsoredStories = false;
         Stories = false;
-        Locked = false;
+        Locked = true;
+      };
+
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        OnlineEnabled = false;
+        Locked = true;
       };
 
       RequestedLocales = [
