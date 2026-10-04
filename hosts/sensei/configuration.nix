@@ -96,6 +96,9 @@
 
   services.blueman.enable = true;
 
+  # Ledger
+  hardware.ledger.enable = true;
+
   # Gebruikers
   users.users."david" = {
     isNormalUser = true;
@@ -117,6 +120,7 @@
     pkgs.zed-editor
     pkgs.thunderbird
     pkgs.onlyoffice-desktopeditors
+    pkgs.ledger-live-desktop
     pkgs.nil
     pkgs.nixd
     pkgs.nixfmt
@@ -132,6 +136,9 @@
     };
   };
 
+  # Steam
+  programs.steam.enable = true;
+
   # Services
   services.openssh = {
     enable = true;
@@ -143,6 +150,8 @@
     enable = true;
     openFirewall = true;
   };
+
+  services.flatpak.enable = true;
 
   # Niet wijzigen zonder migratie; zie `man configuration.nix`.
   system.stateVersion = "26.05";
