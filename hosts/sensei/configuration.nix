@@ -123,6 +123,42 @@
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
 
+      # Bitwarden bewaard logins
+      OfferToSaveLogins = false;
+      PasswordManagerEnabled = false;
+      #HTTPS Standaard, maar uitzonderingen blijven mogelijk
+      HttpsOnlyMode = "enabled";
+
+      IPProtectionAvailible = false;
+      AIControls = {
+        Default = {
+          Value = "blocked";
+          Locked = true;
+        };
+        Translations = {
+          Value = "availible";
+          Locked = false;
+        };
+      }'
+
+      #Minder aanbevelingen en mozilla promites
+      UserMessaging = {
+        ExtensionRecommendations = false;
+        FeatureRecommendations = false;
+        UrlbarInterventions = false;
+        SkipOnboarding = true;
+        MoreFromMozilla = false;
+        FirefoxLabs = false;
+        Locked = false;
+      };
+
+      Preferences = {
+        "browser.translations.neverTranslateLanguages" = {
+          Value = "en";
+          Status = "locked";
+        };
+      };
+
       Homepage = {
         URL = "https://studio.bitsoft.nl";
         Locked = true;
