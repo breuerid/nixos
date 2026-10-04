@@ -15,6 +15,7 @@
     "flakes"
   ];
   environment.systemPackages = [
+    pkgs.fastfetch
     pkgs.git
     pkgs.zed-editor
     pkgs.nil
