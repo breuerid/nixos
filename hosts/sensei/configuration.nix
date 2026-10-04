@@ -24,6 +24,15 @@
     options = "--delete-older-than 14d";
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:breuerid/nixos#sensei";
+    flags = [ "--refresh" ];
+    dates = "weekly";
+    randomizedDelaySec = "45min";
+    allowReboot = false;
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # Boot
@@ -153,6 +162,24 @@
   };
 
   services.flatpak.enable = true;
+
+  systemd.user.services.flatpak-update = {
+    Unit.Description = "Update user Flatpak apps";
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.flatpak}/bin/flatpak update --user --assumeyes";
+    };
+  };
+
+  systemd.user.timers.flatpak-update = {
+    Unit.Description = "Update user Flatpak apps weekly";
+    Timer = {
+      OnCalendar = "weekly";
+      Persistent = true;
+      RandomizedDelaySec = "45min";
+    };
+    Install.WantedBy = [ "timers.target" ];
+  };
 
   # Niet wijzigen zonder migratie; zie `man configuration.nix`.
   system.stateVersion = "26.05";
