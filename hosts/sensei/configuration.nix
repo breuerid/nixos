@@ -109,7 +109,7 @@
   programs.firefox = {
     enable = true;
     languagePacks = [ "nl" ];
-    
+
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -120,8 +120,14 @@
         Cryptomining = true;
         Fingerprinting = true;
       };
+      FirefoxHome = {
+        Weather = false;
+      };
 
-      RequestedLocales = [ "nl" "en-US" ];
+      RequestedLocales = [
+        "nl"
+        "en-US"
+      ];
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
