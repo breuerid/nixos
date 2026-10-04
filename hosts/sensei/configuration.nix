@@ -108,6 +108,8 @@
   # Install firefox.
   programs.firefox = {
     enable = true;
+    languagePacks = [ "nl" ];
+    
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -119,6 +121,7 @@
         Fingerprinting = true;
       };
 
+      RequrestedLocales = [ "nl" "en-US" ];
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
