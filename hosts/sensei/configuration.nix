@@ -62,6 +62,28 @@
     variant = "euro";
   };
 
+  environment.etc."xdg/autostart/sensei-xfce-desktop.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Sensei XFCE desktopinstellingen
+    Comment=Pas de vaste XFCE-desktopinstellingen toe
+    Exec=/etc/xdg/sensei-xfce-desktop
+    OnlyShowIn=XFCE;
+    X-GNOME-Autostart-enabled=true
+  '';
+
+  environment.etc."xdg/sensei-xfce-desktop" = {
+    mode = "0755";
+    text = ''
+      #!${pkgs.runtimeShell}
+      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfwm4 --property /general/workspace_count --create --type int --set 1
+      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/position --create --type string --set "p=11;x=0;y=0"
+      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/length --create --type uint --set 100
+      ${pkgs.xfce.xfconf}/bin/xfconf-query --channel xfce4-panel --property /panels/panel-1/position-locked --create --type bool --set true
+      ${pkgs.xfce.xfce4-panel}/bin/xfce4-panel --restart || true
+    '';
+  };
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
