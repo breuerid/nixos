@@ -128,6 +128,19 @@
         Locked = true;
       };
 
+      SearchEngines = {
+        Default = "Startpage";
+        Add = [
+          {
+            Name = "Startpage";
+            UrlTemplate = "https://www.startpage.com/sp/search?query={searchTerms}";
+            Method = "GET";
+            Alias = "@sp";
+            Description = "Startpage";
+          }
+        ];
+      };
+
       ExtensionSettings = {
         # Bitwarden
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
