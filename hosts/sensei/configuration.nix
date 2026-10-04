@@ -139,7 +139,7 @@
           Value = "availible";
           Locked = false;
         };
-      }'
+      };
 
       #Minder aanbevelingen en mozilla promites
       UserMessaging = {
