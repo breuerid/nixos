@@ -164,21 +164,21 @@
   services.flatpak.enable = true;
 
   systemd.user.services.flatpak-update = {
-    Unit.Description = "Update user Flatpak apps";
-    Service = {
+    description = "Update user Flatpak apps";
+    serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.flatpak}/bin/flatpak update --user --assumeyes";
     };
   };
 
   systemd.user.timers.flatpak-update = {
-    Unit.Description = "Update user Flatpak apps weekly";
-    Timer = {
+    description = "Update user Flatpak apps weekly";
+    timerConfig = {
       OnCalendar = "weekly";
       Persistent = true;
       RandomizedDelaySec = "45min";
     };
-    Install.WantedBy = [ "timers.target" ];
+    wantedBy = [ "timers.target" ];
   };
 
   # Niet wijzigen zonder migratie; zie `man configuration.nix`.
