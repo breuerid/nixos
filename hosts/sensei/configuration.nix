@@ -136,7 +136,7 @@
           Locked = true;
         };
         Translations = {
-          Value = "available    ";
+          Value = "available";
           Locked = false;
         };
       };
