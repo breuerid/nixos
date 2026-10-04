@@ -122,6 +122,10 @@
       };
       FirefoxHome = {
         Weather = false;
+        SponsoredTopSites = false;
+        SponsoredStories = false;
+        Stories = false;
+        Locked = false;
       };
 
       RequestedLocales = [
