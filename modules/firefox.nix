@@ -61,7 +61,7 @@
         Fingerprinting = true;
       };
 
-      HttpsOnlyMode = "enabled";
+      HttpsOnlyMode = "false";
       IPProtectionAvailable = false;
 
       # Wachtwoorden
